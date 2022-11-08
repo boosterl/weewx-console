@@ -1,0 +1,31 @@
+[1m$station.location[0m
+$current.dateTime
+
+#set $observations = $to_list($DisplayOptions.get('observations_current', ['outTemp', 'barometer']))
+[1mCurrent Conditions[0m
+
+#for $x in $observations
+#if $getVar('year.%s.has_data' % $x)
+#if $x == 'barometer'
+[1m$obs.label.barometer[0m $current.barometer ($trend.barometer.formatted)
+#elif $x == 'windSpeed'
+[1m$obs.label.wind[0m $current.windSpeed $current.windDir.ordinal_compass ($current.windDir)
+#elif $x == 'rain'
+[1m$gettext("Rain Today")[0m $day.rain.sum
+#elif $x == 'UV'
+#if $current.UV.raw <= 2.4
+[1m$obs.label.UV[0m [42m$current.UV[0m
+#else if $current.UV.raw >= 2.5 and $current.UV.raw <= 5.4
+[1m$obs.label.UV[0m [43m$current.UV[0m
+#else if $current.UV.raw >= 5.5 and $current.UV.raw <= 7.4
+[1m$obs.label.UV[0m [202m$current.UV[0m
+#else if $current.UV.raw >= 7.5 and $current.UV.raw <= 10.4
+[1m$obs.label.UV[0m [41m$current.UV[0m
+#else if $current.UV.raw > 10.5
+[1m$obs.label.UV[0m [45m$current.UV
+#end if
+#else
+[1m$obs.label[$x][0m $getVar('current.' + $x)
+#end if
+#end if
+#end for
