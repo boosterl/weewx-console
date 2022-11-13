@@ -2,6 +2,11 @@
 $current.dateTime
 
 #set $observations_current = $to_list($DisplayOptions.get('observations_current', ['outTemp', 'barometer']))
+#set $observations_stats = $to_list($DisplayOptions.get('observations_stats', ['outTemp', 'windSpeed', 'rain']))
+#set $obs_type_sum = $to_list($DisplayOptions.get('obs_type_sum', ['rain']))
+#set $obs_type_max = $to_list($DisplayOptions.get('obs_type_max', ['rainRate']))
+## use this span to determine whether there are any data to consider.
+#set $recent=$span($day_delta=30, boundary='midnight')
 [1mCurrent Conditions[0m
 
 #for $x in $observations_current
@@ -26,6 +31,28 @@ $current.dateTime
 #end if
 #else
 [1m$obs.label[$x][0m $getVar('current.' + $x)
+#end if
+#end if
+#end for
+
+[1mStatistics[0m
+
+#for $x in $observations_stats
+#if getattr($recent, $x).has_data
+#if $x == 'windSpeed'
+[1m$gettext("Max Wind")[0m
+$day.wind.max
+$day.wind.gustdir
+[1m$gettext("Average Wind")[0m $day.wind.avg
+[1m$gettext("RMS Wind")[0m $day.wind.rms
+[1m$gettext("Vector Average")[0m $day.wind.vecavg
+[1m$gettext("Vector Direction")[0m $day.wind.vecdir
+#elif $x in $obs_type_sum
+[1m$obs.label[$x][0m $getVar('day.' + $x).sum
+#elif $x in $obs_type_max
+[1m$obs.label[$x][0m $getVar('day.' + $x).maxtime
+#else
+[1m$obs.label[$x][0m [31mMax[0m $getVar('day.' + $x).max [34mMin[0m $getVar('day.' + $x).min
 #end if
 #end if
 #end for
