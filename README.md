@@ -16,3 +16,10 @@ Restart weewx:
 ```
 sudo systemctl restart weewx
 ```
+
+## Usage
+
+To access the current weather coniditions, with for example `curl`, just issue:
+```
+curl http://$WEEWX_INSTANCE/weewx/console/current
+```
