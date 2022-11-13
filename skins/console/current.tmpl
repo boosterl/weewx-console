@@ -1,10 +1,10 @@
 [1m$station.location[0m
 $current.dateTime
 
-#set $observations = $to_list($DisplayOptions.get('observations_current', ['outTemp', 'barometer']))
+#set $observations_current = $to_list($DisplayOptions.get('observations_current', ['outTemp', 'barometer']))
 [1mCurrent Conditions[0m
 
-#for $x in $observations
+#for $x in $observations_current
 #if $getVar('year.%s.has_data' % $x)
 #if $x == 'barometer'
 [1m$obs.label.barometer[0m $current.barometer ($trend.barometer.formatted)
