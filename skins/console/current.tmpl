@@ -50,7 +50,7 @@ $day.wind.gustdir
 #elif $x in $obs_type_sum
 [1m$obs.label[$x][0m $getVar('day.' + $x).sum
 #elif $x in $obs_type_max
-[1m$obs.label[$x][0m $getVar('day.' + $x).maxtime
+[1m$obs.label[$x][0m $getVar('day.' + $x).max
 #else
 [1m$obs.label[$x][0m [31mMax[0m $getVar('day.' + $x).max [34mMin[0m $getVar('day.' + $x).min
 #end if
