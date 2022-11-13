@@ -8,7 +8,7 @@ def loader():
 class ConsoleInstaller(ExtensionInstaller):
     def __init__(self):
         super(ConsoleInstaller, self).__init__(
-            version="0.1",
+            version="0.2",
             name='console',
             description='A console-friendly layout.',
             author="Bram Oosterlynck",
