@@ -21,6 +21,8 @@ class ConsoleInstaller(ExtensionInstaller):
             files=[('skins/console',
                     ['skins/console/current.tmpl',
                      'skins/console/week.tmpl',
+                     'skins/console/month.tmpl',
+                     'skins/console/year.tmpl',
                      'skins/console/skin.conf'])
                    ]
             )
