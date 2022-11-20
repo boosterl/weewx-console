@@ -23,3 +23,15 @@ To access the current weather coniditions, with for example `curl`, just issue:
 ```
 curl http://$WEEWX_INSTANCE/weewx/console/current
 ```
+
+Statistics per week/month/year can also be fetched:
+```
+curl http://$WEEWX_INSTANCE/weewx/console/week
+curl http://$WEEWX_INSTANCE/weewx/console/month
+curl http://$WEEWX_INSTANCE/weewx/console/year
+```
+
+Information about the station can be fetched with:
+```
+curl http://$WEEWX_INSTANCE/weewx/console/about
+```
