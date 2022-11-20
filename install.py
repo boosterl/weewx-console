@@ -8,7 +8,7 @@ def loader():
 class ConsoleInstaller(ExtensionInstaller):
     def __init__(self):
         super(ConsoleInstaller, self).__init__(
-            version="0.2",
+            version="0.3",
             name='console',
             description='A console-friendly layout.',
             author="Bram Oosterlynck",
@@ -23,6 +23,7 @@ class ConsoleInstaller(ExtensionInstaller):
                      'skins/console/week.tmpl',
                      'skins/console/month.tmpl',
                      'skins/console/year.tmpl',
+                     'skins/console/about.tmpl',
                      'skins/console/skin.conf'])
                    ]
             )
