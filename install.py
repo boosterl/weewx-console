@@ -20,6 +20,7 @@ class ConsoleInstaller(ExtensionInstaller):
                         'HTML_ROOT':'console'}}},
             files=[('skins/console',
                     ['skins/console/current.tmpl',
+                     'skins/console/week.tmpl',
                      'skins/console/skin.conf'])
                    ]
             )
