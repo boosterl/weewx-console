@@ -18,7 +18,21 @@ $year.wind.gustdir
 #elif $x in $obs_type_sum
 [1m$obs.label[$x][0m $getVar('year.' + $x).sum
 #elif $x in $obs_type_max
+#if $x == 'UV'
+#if $year.UV.max.raw <= 2.4
+[1m$obs.label.UV[0m [42m$year.UV.max[0m
+#else if $year.UV.max.raw >= 2.5 and $year.UV.max.raw <= 5.4
+[1m$obs.label.UV[0m [43m$year.UV.max[0m
+#else if $year.UV.max.raw >= 5.5 and $year.UV.max.raw <= 7.4
+[1m$obs.label.UV[0m [101m$year.UV.max[0m
+#else if $year.UV.max.raw >= 7.5 and $year.UV.max.raw <= 10.4
+[1m$obs.label.UV[0m [41m$year.UV.max[0m
+#else if $year.UV.max.raw > 10.5
+[1m$obs.label.UV[0m [45m$year.UV.max[0m
+#end if
+#else
 [1m$obs.label[$x][0m $getVar('year.' + $x).max
+#end if
 #else
 [1m$obs.label[$x][0m [31mMax[0m $getVar('year.' + $x).max [34mMin[0m $getVar('year.' + $x).min
 #end if

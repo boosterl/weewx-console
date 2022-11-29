@@ -18,7 +18,21 @@ $week.wind.gustdir
 #elif $x in $obs_type_sum
 [1m$obs.label[$x][0m $getVar('week.' + $x).sum
 #elif $x in $obs_type_max
+#if $x == 'UV'
+#if $week.UV.max.raw <= 2.4
+[1m$obs.label.UV[0m [42m$week.UV.max[0m
+#else if $week.UV.max.raw >= 2.5 and $week.UV.max.raw <= 5.4
+[1m$obs.label.UV[0m [43m$week.UV.max[0m
+#else if $week.UV.max.raw >= 5.5 and $week.UV.max.raw <= 7.4
+[1m$obs.label.UV[0m [101m$week.UV.max[0m
+#else if $week.UV.max.raw >= 7.5 and $week.UV.max.raw <= 10.4
+[1m$obs.label.UV[0m [41m$week.UV.max[0m
+#else if $week.UV.max.raw > 10.5
+[1m$obs.label.UV[0m [45m$week.UV.max[0m
+#end if
+#else
 [1m$obs.label[$x][0m $getVar('week.' + $x).max
+#end if
 #else
 [1m$obs.label[$x][0m [31mMax[0m $getVar('week.' + $x).max [34mMin[0m $getVar('week.' + $x).min
 #end if
